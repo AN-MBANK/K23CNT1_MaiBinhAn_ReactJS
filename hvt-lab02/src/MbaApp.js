@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-function App() {
+function MbaApp() {
   return (
     <div className="App">
       <header className="App-header">
@@ -26,4 +26,4 @@ function App() {
   );
 }
 
-export default App;
+export default MbaApp;
