@@ -4,7 +4,7 @@ class MbaRenderListStudent extends Component {
     constructor(props){
         super(props);
         this.state = {
-            tvcStudents:[
+             mbaStudents:[
                 {mbaId:"SV001",mbaName:"mb an", mbaAge:45, mbaClass:"K23CNT1"},
                 {mbaId:"SV002",mbaName:"Nguyễn Quang A", mbaAge:22, mbaClass:"K23CNT1"},
                 {mbaId:"SV003",mbaName:"Nguyễn Quang B", mbaAge:21, mbaClass:"K23CNT1"},
