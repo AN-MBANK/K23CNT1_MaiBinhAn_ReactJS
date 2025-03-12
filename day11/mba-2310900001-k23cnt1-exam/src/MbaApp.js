@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import MbaAccountAdd from "./component/MbaAccountAdd";
+import React, {component} from 'react';
 import MbaAccountList from "./component/MbaAccountList";
+import MbaAccountAdd from "./component/MbaAccountAdd";
 
-function MbaApp(){
-  
-    const { accounts, addAccount } = accounts();
-      return (
-    <div className='container border mt-3'>
-        <h1> mba-2310900001-K23CNT1-exam </h1>
-        
-        <MbaAccountAdd />
-        
-        <MbaAccountList />
+
+class MbaApp extends component (){
+ render(){
+
+  return (
+    <div>
+      <h1>mba-2310900001-k23cnt1-exam</h1>
+      <MbaAccountAdd />
+      <MbaAccountList />
     </div>
+  );
+}}
 
-  );}
-  export default MbaApp;
+export default MbaApp;
