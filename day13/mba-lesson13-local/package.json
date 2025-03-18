@@ -1,0 +1,13 @@
+{
+  "name": "mba-lesson13-local",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "json-server --watch dbs.json --port 3001"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
