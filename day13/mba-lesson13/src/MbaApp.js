@@ -6,7 +6,7 @@ import MbaCreateMockAPI from './component/MbaCreateMockAPI'
 export default function MbaApp() {
   return (
     <div className='container border my-3 p-3'>
-        <h1> ReactJS - API - Trịnh Văn Chung</h1>
+        <h1 style={{ textAlign:"center", backgroundColor:"green"}}> ReactJS - API - Mba </h1>
         <hr/>
         <MbaReadApiLocal />
         <hr/>
