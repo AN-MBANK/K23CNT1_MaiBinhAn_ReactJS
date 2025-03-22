@@ -1,22 +1,44 @@
 {
-    "users":[
-        {
-            "fullName":"Mai Binh An",
-            "age":20,
-            "class":"K23CNT1"
+    "mba_user":[
+        {   "id": "1",
+            "mba_name": "mai binh an",
+            "mba_email": "mba_email gmail.com",
+            "mba_phone": 72,
+            "mba_active": "hoat dong"
+            
+           
+
         },
         {
-            "fullName":"Nguyễn Quang A",
-            "age":22,
-            "class":"K23CNT2"
-        },
-        {
-            "fullName":"Nguyễn Quang B",
-            "age":33,
-            "class":"K23CNT3"
-        }
+            "mba_email": "mba_email 2",
+            "mba_name": "mba_name 2",
+            "mba_active": "mba_active 2",
+            "mba_phone": 68,
+            "id": "2"
+          },
+          {
+            "mba_email": "mba_email 3",
+            "mba_name": "mba_name 3",
+            "mba_active": "mba_active 3",
+            "mba_phone": 32,
+            "id": "3"
+          },
+          {
+            "mba_email": "mba_email 4",
+            "mba_name": "mba_name 4",
+            "mba_active": "mba_active 4",
+            "mba_phone": 69,
+            "id": "4"
+          },
+          {
+            "mba_email": "mba_email 5",
+            "mba_name": "mba_name 5",
+            "mba_active": "mba_active 5",
+            "mba_phone": 3,
+            "id": "5"
+          }
     ],
-    "students":[
+    "mba_student":[
         {
             "studentId":"SV0001",
             "studentName":"Nguyễn Văn D"

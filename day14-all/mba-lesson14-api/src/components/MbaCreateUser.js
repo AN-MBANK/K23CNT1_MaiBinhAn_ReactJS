@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MbaAxiosUsers from "../api/Mba_api";
 
+
 export default function MbaCreateUser() {
   const navigate = useNavigate();
   const [Mba_formData, setMba_formData] = useState({

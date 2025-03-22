@@ -1,129 +1,102 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import MbaAxiosUsers from '../api/Mba_api';
+import React, { useEffect, useState } from "react";
+import "../styles/Table.css";
 
-const MbaListUsers=()=> {
-  const navigate = useNavigate();
-  const [mbaListUser, setMbaListUser] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [alert, setAlert] = useState(null);
+const MbaListUsers = () => {
+  const [users, setUsers] = useState([]);
 
-  const mbaGetAllUser = async () => {
-    setIsLoading(true);
-    try {
-      const mbaResp = await MbaAxiosUsers.get('/mba_users');
-      setMbaListUser(mbaResp.data);
-    } catch (error) {
-      console.error('Error fetching users:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
+  // Fetch dữ liệu từ API
   useEffect(() => {
-    mbaGetAllUser();
+    fetch("http://localhost:3001/api/users")
+      .then((response) => response.json())
+      .then((data) => setUsers(data.users || data)) // Cấu trúc API
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
-  const mbaHandleUpdate = (mbaId) => {
-    console.log('id:', mbaId);
-    navigate(`/edit-user/${mbaId}`);
-    setAlert({ type: 'success', message: 'Đã chuyển đến trang cập nhật!' });
-    setTimeout(() => setAlert(null), 3000);
+  // Hàm thêm user mới
+  const addUser = () => {
+    const newUser = {
+      id: users.length + 1,
+      fullName: "Nguyen Van A",
+      email: "nguyenvana@example.com",
+      phone: "0123456789",
+      active: true,
+    };
+
+    setUsers([...users, newUser]); // Chỉ cập nhật local cho demo
   };
 
-  const mbaHandleDelete = async (mbaId) => {
-    if (window.confirm('Bạn có chắc muốn xóa user này không?')) {
-      try {
-        await MbaAxiosUsers.delete(`/mba_users/${mbaId}`);
-        setMbaListUser(mbaListUser.filter((x) => x.id !== mbaId));
-        setAlert({ type: 'danger', message: 'Đã xóa user thành công!' });
-        setTimeout(() => setAlert(null), 3000);
-      } catch (error) {
-        console.error('Error deleting user:', error);
-        setAlert({ type: 'danger', message: 'Lỗi khi xóa user!' });
-        setTimeout(() => setAlert(null), 3000);
-      }
-    }
+  // Hàm toggle trạng thái "Active"
+  const toggleActive = (id) => {
+    setUsers(
+      users.map((user) =>
+        user.id === id ? { ...user, active: !user.active } : user
+      )
+    );
   };
 
-  const mbaElementUser = mbaListUser.map((mbaUser) => (
-    <tr key={mbaUser.id}>
-      <td>{mbaUser.id}</td>
-      <td>{mbaUser.mba_name}</td>
-      <td>{mbaUser.mba_email}</td>
-      <td>{mbaUser.mba_phone}</td>
-      <td>
-        <span
-          className={`badge ${
-            mbaUser.mba_active ? 'bg-success' : 'bg-danger'
-          }`}
-        >
-          {mbaUser.mba_active ? 'Hoạt động' : 'Khóa'}
-        </span>
-      </td>
-      <td>
-        <div className="btn-group" role="group">
-          <button
-            className="btn btn-primary btn-sm me-2"
-            onClick={() => mbaHandleUpdate(mbaUser.id)}
-          >
-            Edit
-          </button>
-          <button
-            className="btn btn-danger btn-sm"
-            onClick={() => mbaHandleDelete(mbaUser.id)}
-          >
-            Delete
-          </button>
-        </div>
-      </td>
-    </tr>
-  ));
+  // Hàm xóa user
+  const deleteUser = (id) => {
+    setUsers(users.filter((user) => user.id !== id)); // Chỉ cập nhật local cho demo
+  };
 
   return (
-    <div className="container mt-4">
-      <h2 className="text-center mb-4">Danh sách User</h2>
+    <div className="container">
+      {/* Navigation bar */}
+      <nav className="navbar">
+        <a href="#home">Trang chủ</a>
+        <a href="#user-list">Danh sách User</a>
+        <a href="#add-user">Thêm mới User</a>
+      </nav>
 
-      {/* Custom Alert */}
-      {alert && (
-        <div className={`alert alert-${alert.type} alert-dismissible fade show`} role="alert">
-          {alert.message}
-          <button
-            type="button"
-            className="btn-close"
-            onClick={() => setAlert(null)}
-            aria-label="Close"
-          ></button>
-        </div>
-      )}
-
-      {isLoading ? (
-        <div className="text-center">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Đang tải...</span>
-          </div>
-          <p>Đang tải...</p>
-        </div>
-      ) : mbaListUser.length === 0 ? (
-        <p className="text-center text-muted fst-italic">Không có dữ liệu để hiển thị.</p>
-      ) : (
-        <div className="table-responsive">
-          <table className="table table-striped table-hover table-bordered">
-            <thead className="table-light">
-              <tr>
-                <th>User ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Status</th>
-                <th>Action</th>
+      <h2>Danh sách User</h2>
+      <table className="styled-table">
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Active</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.length > 0 ? (
+            users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.fullName}</td>
+                <td>{user.email}</td>
+                <td>{user.phone}</td>
+                <td>
+                  <button
+                    className={`toggle-btn ${user.active ? "active" : "inactive"}`}
+                    onClick={() => toggleActive(user.id)}
+                  >
+                    {user.active ? "Hoạt động" : "Khóa"}
+                  </button>
+                </td>
+                <td>
+                  <button className="delete-btn" onClick={() => deleteUser(user.id)}>
+                    Delete
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody>{mbaElementUser}</tbody>
-          </table>
-        </div>
-      )}
+            ))
+          ) : (
+            <tr>
+              <td colSpan="6" style={{ textAlign: "center" }}>
+                Không có dữ liệu
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+      <button onClick={addUser} className="add-btn">
+        Thêm User
+      </button>
     </div>
   );
-}
+};
+
 export default MbaListUsers;
