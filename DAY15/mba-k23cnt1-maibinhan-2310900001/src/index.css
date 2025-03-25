@@ -1,0 +1,91 @@
+/* Reset mặc định */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content:  space-between;
+  background: linear-gradient(45deg, #1576e6, #e4c218);
+  padding: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  
+}
+
+/* Hover effect */
+nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  
+  nav {
+    background: linear-gradient(45deg, #e94444, #222);
+  }
+  
+  nav a {
+    color: #c05555;
+  }
+  
+  nav a:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+/* Trong App.css hoặc index.css */
+button {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+ thead.tr{
+  background: linear-gradient(45deg, #23d7dd, #d71111);
+  border: none;
+  padding: 10px 20px;
+  color: rgb(21, 1, 1);
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+ }
+ thead.tr:hover{
+  transform: scale(1.05);
+  opacity: 0.9;
+ }

@@ -42,11 +42,7 @@ const MbaListUsers = () => {
   return (
     <div className="container">
       {/* Navigation bar */}
-      <nav className="navbar">
-        <a href="#home">Trang chủ</a>
-        <a href="#user-list">Danh sách User</a>
-        <a href="#add-user">Thêm mới User</a>
-      </nav>
+      
 
       <h2>Danh sách User</h2>
       <table className="styled-table">
@@ -92,9 +88,7 @@ const MbaListUsers = () => {
           )}
         </tbody>
       </table>
-      <button onClick={addUser} className="add-btn">
-        Thêm User
-      </button>
+      
     </div>
   );
 };
